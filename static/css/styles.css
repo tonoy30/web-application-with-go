@@ -1,0 +1,10 @@
+@import url("../assets/fonts/Roboto-Regular.ttf");
+@import "./bulma.min.css";
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: "Roboto", sans-serif;
+}
