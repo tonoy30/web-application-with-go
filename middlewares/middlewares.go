@@ -6,8 +6,17 @@ import (
 	"time"
 )
 
-// Type alias for middleware
+// Function Type alias
 type Middleware func(http.HandlerFunc) http.HandlerFunc
+
+func Matcher(m string, sl []string) bool {
+	for _, s := range sl {
+		if s == m {
+			return true
+		}
+	}
+	return false
+}
 
 // Logging: Used to logging
 func Logging() Middleware {
@@ -23,10 +32,10 @@ func Logging() Middleware {
 }
 
 // Method: http method guard
-func Method(m string) Middleware {
+func Method(m ...string) Middleware {
 	return func(f http.HandlerFunc) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {
-			if r.Method != m {
+			if !Matcher(r.Method, m) {
 				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 				return
 			}
