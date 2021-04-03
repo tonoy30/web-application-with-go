@@ -17,6 +17,6 @@ func main() {
 	r.Headers("x-content-type-options", "nosniff")
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	controllers.HomeController(r)
-
+	controllers.AuthController(r)
 	log.Fatal(http.ListenAndServe(PORT, r))
 }

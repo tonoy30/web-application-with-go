@@ -10,12 +10,19 @@
 	/>
 	<link rel="stylesheet" href="../static/css/styles.css" />
 	{{block "styles" .}} {{end}}
+	{{if .Title}}
+	<title>{{ .Title }}</title>
+	{{else}}
 	<title>Document</title>
-	{{block "title" .}} {{end}}
+	{{end}}
 </head>
 	<body>
-		{{ template "_header.html" }}
-		{{ template "content" }}
+		<header>
+			{{ template "_header.html" }}
+		</header>
+		<main class="container">
+			{{ template "content" }}
+		</main>
 		{{ template "_footer.html" }}
 		{{ block "scripts" .}}{{end}}
 	</body>
